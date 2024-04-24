@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transfermatrix"
+version = "0.0.1"
+dependencies = [
+  "numpy",
+  "typer"
+]
+requires-python = ">=3.6"
+authors = [
+  {name = "christian.haenisch"},
+]
+maintainers = [
+  {name = "christian.haenisch"}
+]
+description = "Package for calculation of optical properties of thin-film stacks."
+readme = "README.md"
+license = {file = "LICENSE.md"}
+keywords = ["transfer matrix", "thin film", "optics"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU LGPL License version 3",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+Repository = "https://github.com/simoji-dev/transfermatrix"
