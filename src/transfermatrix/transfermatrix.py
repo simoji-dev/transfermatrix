@@ -21,11 +21,18 @@ class TransferMatrix:
                              angles_deg: Sequence[float],
                              layer_index_angle_definition: Optional[int] = 0,
                              selected_layers_indices: Optional[Sequence[int]] = None):
+        normalized_in_plane_wave_vectors = self._convert_angles_to_wave_vectors(
+            angles_deg=angles_deg, layer_index_angle_definition=layer_index_angle_definition,
+        )
+        self.calculate_for_wave_vectors(
+            normalized_in_plane_wave_vectors=normalized_in_plane_wave_vectors,
+            layer_index_angle_definition=layer_index_angle_definition,
+            selected_layers_indices=selected_layers_indices
+        )
+
+    def _convert_angles_to_wave_vectors(self, angles_deg: Sequence[float],
+                                        layer_index_angle_definition: int) -> Sequence[float]:
         pass
-        # todo:
-        # convert angles to wave vectors
-        # calculate kz_3d [layer, wavelengths, wave vectors]
-        # translate in incoherent stack, coherent sub-stacks are like interfaces
 
     def calculate_for_wave_vectors(self,
                                    normalized_in_plane_wave_vectors: Sequence[float],
