@@ -27,5 +27,11 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pre-commit",
+  "jupyterlab"
+]
+
 [project.urls]
 Repository = "https://github.com/simoji-dev/transfermatrix"
