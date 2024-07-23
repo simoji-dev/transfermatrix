@@ -7,9 +7,9 @@ name = "transfermatrix"
 version = "0.0.1"
 dependencies = [
   "numpy",
-  "typer",
-  "pandera"
+  "typer"
 ]
+
 requires-python = ">=3.6"
 authors = [
   {name = "christian.haenisch"},

@@ -1,17 +1,17 @@
-import pandera as pa
-from pandera.typing import Series
+import pydantic
 from enum import Enum
 
 
-class Layer(pa.SchemaModel):
+class Layer(pydantic.BaseModel):
 
-    wavelengths: Series[float] = pa.Field(coerce=True)      # wavelengths in nm
-    nk: Series[float] = pa.Field(coerce=True)               # complex refractive index
+    wavelengths: list[float]        # wavelengths in nm
+    n: list[float]                  # refractive index (real part)
+    k: list[float]                  # extinction coefficient
 
 
 class CoherentLayer(Layer):
 
-    thickness: float = pa.Field(coerce=True)                # layer thickness in nm
+    thickness: float                # layer thickness in nm
 
 
 class Polarization(str, Enum):
