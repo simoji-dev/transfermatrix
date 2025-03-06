@@ -1,4 +1,4 @@
-from transfermatrix.input import Layer, OpticalConstants
+from transfermatrix.interfaces import Layer, OpticalConstants
 
 wl = [100, 200, 300]
 n = [1.1, 1.2, 1.3]

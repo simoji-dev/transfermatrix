@@ -1,6 +1,6 @@
 import numpy as np
 from typing import List, Optional, Union
-from transfermatrix.input import Polarization
+from transfermatrix.interfaces import Polarization
 
 
 class TransferMatrix:
