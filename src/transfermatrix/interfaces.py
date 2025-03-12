@@ -2,6 +2,8 @@ import dataclasses
 import enum
 import typing
 
+import numpy as np
+
 
 @dataclasses.dataclass
 class OpticalConstants:
@@ -10,6 +12,24 @@ class OpticalConstants:
     wavelengths: typing.Sequence[float]    # wavelengths in nm
     n: typing.Sequence[float]              # refractive index (real part)
     k: typing.Sequence[float]              # extinction coefficient
+
+    def __post_init__(self):
+        assert len(self.wavelengths) == len(self.n)
+        assert len(self.wavelengths) == len(self.k)
+
+    def get_complex_refractive_index(self, wavelengths: typing.Union[typing.Sequence[float], None] = None) -> list[complex]:
+        """Linear interpolate optical constants to given wavelengths."""
+
+        if wavelengths is None:
+            wavelengths = self.wavelengths
+
+        assert min(wavelengths) >= min(self.wavelengths)
+        assert max(wavelengths) <= max(self.wavelengths)
+
+        n = np.interp(wavelengths, xp=self.wavelengths, fp=self.n)
+        k = np.interp(wavelengths, xp=self.wavelengths, fp=self.k)
+
+        return n + 1.j * k
 
 
 @dataclasses.dataclass
