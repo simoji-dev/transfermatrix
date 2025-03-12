@@ -17,7 +17,7 @@ class OpticalConstants:
         assert len(self.wavelengths) == len(self.n)
         assert len(self.wavelengths) == len(self.k)
 
-    def get_complex_refractive_index(self, wavelengths: typing.Union[typing.Sequence[float], None] = None) -> list[complex]:
+    def get_complex_refractive_index(self, wavelengths: typing.Union[typing.Sequence[float], None] = None) -> np.ndarray:
         """Linear interpolate optical constants to given wavelengths."""
 
         if wavelengths is None:
@@ -30,6 +30,15 @@ class OpticalConstants:
         k = np.interp(wavelengths, xp=self.wavelengths, fp=self.k)
 
         return n + 1.j * k
+
+    def get_wavevector_lengths(self, wavelengths: typing.Union[typing.Sequence[float], None] = None) -> np.ndarray:
+        """Calculate wavevector lengths at given wavelengths."""
+
+        if wavelengths is None:
+            wavelengths = np.array(self.wavelengths)
+
+        nk = self.get_complex_refractive_index(wavelengths)
+        return 2 * np.pi * nk / wavelengths
 
 
 @dataclasses.dataclass
